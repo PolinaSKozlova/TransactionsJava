@@ -8,8 +8,11 @@ public class User {
     }
 
     public void setBalance(float balance) {
-        if (balance < 0) System.err.println("Initial balance can't be zero!");
-        else this.balance = balance;
+        if (balance < 0) {
+            System.err.println("Initial balance can't be zero!");
+        } else {
+            this.balance = balance;
+        }
     }
 
     public int getIdentifier() {
@@ -23,10 +26,12 @@ public class User {
     public float getBalance() {
         return balance;
     }
-public void showInfo(){
-    System.out.println(identifier + " " + name + " " + balance);
-}
-private static int countId = 0;
+
+    public void showInfo() {
+        System.out.println(identifier + " " + name + " " + balance);
+    }
+
+    private static int countId = 0;
     private final int identifier;
     private final String name;
     private float balance;

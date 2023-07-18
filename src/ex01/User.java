@@ -4,12 +4,15 @@ public class User {
     public User(String name, float balance) {
         this.name = name;
         this.setBalance(balance);
-        identifier = ++countId;
+        identifier = UserIdsGenerator.getInstance().generateId();
     }
 
     public void setBalance(float balance) {
-        if (balance < 0) System.err.println("Initial balance can't be zero!");
-        else this.balance = balance;
+        if (balance < 0) {
+            System.err.println("Initial balance can't be zero!");
+        } else {
+            this.balance = balance;
+        }
     }
 
     public int getIdentifier() {
@@ -24,7 +27,10 @@ public class User {
         return balance;
     }
 
-    private static int countId = 0;
+    public void showInfo() {
+        System.out.println(identifier + " " + name + " " + balance);
+    }
+
     private final int identifier;
     private final String name;
     private float balance;
