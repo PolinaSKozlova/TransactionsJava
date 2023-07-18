@@ -23,8 +23,10 @@ public class User {
     public float getBalance() {
         return balance;
     }
-
-    private static int countId = 0;
+public void showInfo(){
+    System.out.println(identifier + " " + name + " " + balance);
+}
+private static int countId = 0;
     private final int identifier;
     private final String name;
     private float balance;

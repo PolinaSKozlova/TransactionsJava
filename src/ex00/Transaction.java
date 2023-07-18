@@ -29,6 +29,21 @@ public class Transaction {
         identifier = UUID.randomUUID();
     }
 
+    public Transaction(Transaction other) {
+        identifier = other.identifier;
+        recipient = other.sender;
+        sender = other.recipient;
+        transferAmount = other.transferAmount * (-1);
+        if (other.transferCategory == TransferCategory.DEBIT) transferCategory = TransferCategory.CREDIT;
+        else transferCategory = TransferCategory.DEBIT;
+        transferStatus = other.transferStatus;
+
+    }
+
+    public void showInfo() {
+        System.out.println(identifier + " " + recipient.getName() + " " + sender.getName() + " " + transferAmount + " " + transferCategory + " " + transferStatus);
+    }
+
     public UUID getIdentifier() {
         return identifier;
     }
