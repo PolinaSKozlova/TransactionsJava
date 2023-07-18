@@ -7,15 +7,26 @@ public class Program {
         User userAnn = new User("Ann", 280);
         User userKen = new User("Ken", 450);
         Transaction tr1 = new Transaction(userBob, userAnn, 100);
+        Transaction tr1Inverse = new Transaction(tr1);
         Transaction tr2 = new Transaction(userKen, userBob, 150);
+        Transaction tr2Inverse = new Transaction(tr2);
         Transaction tr3 = new Transaction(userAnn, userKen, -50);
+        Transaction tr3Inverse = new Transaction(tr3);
         Transaction tr4 = new Transaction(userBob, userKen, -600);
+        Transaction tr4Inverse = new Transaction(tr4);
         Transaction tr5 = new Transaction(userBob, userKen, -60);
+        Transaction tr5Inverse = new Transaction(tr5);
         listTransactions.addTransaction(tr1);
+        listTransactions.addTransaction(tr1Inverse);
         listTransactions.addTransaction(tr2);
+        listTransactions.addTransaction(tr2Inverse);
         listTransactions.addTransaction(tr3);
+        listTransactions.addTransaction(tr3Inverse);
         listTransactions.addTransaction(tr4);
+        listTransactions.addTransaction(tr4Inverse);
         listTransactions.addTransaction(tr5);
+        listTransactions.addTransaction(tr5Inverse);
+
         Transaction[] arrayTransaction = listTransactions.transformToArray();
         for (var it : arrayTransaction) {
             it.showInfo();
@@ -26,6 +37,7 @@ public class Program {
         }
         try {
             listTransactions.removeTransaction(tr4.getIdentifier());
+            listTransactions.removeTransaction(tr4Inverse.getIdentifier());
         } catch (TransactionNotFoundException e) {
             System.out.println(e.toString());
         }
