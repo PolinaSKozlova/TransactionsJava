@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class Program {
     public static void main(String[] args) {
+
         TransactionsService tS = new TransactionsService();
         User userBob = new User("Bob", 200);
         User userAnn = new User("Ann", 150);
@@ -23,7 +24,7 @@ public class Program {
             tS.performTransferTransaction(userBob.getIdentifier(), userAnn.getIdentifier(), 50);
             tS.performTransferTransaction(userKen.getIdentifier(), userAnn.getIdentifier(), 100);
             tS.performTransferTransaction(userKen.getIdentifier(), userBob.getIdentifier(), -500);
-        } catch (UserNotFoundException e) {
+        } catch (IllegalTransactionException | UserNotFoundException e) {
             e.printStackTrace();
         }
         System.out.println("Bob transactions");
@@ -72,5 +73,6 @@ public class Program {
         for (var it : tS.checkValidity()) {
             it.showInfo();
         }
+
     }
 }

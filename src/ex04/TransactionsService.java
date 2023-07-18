@@ -1,6 +1,5 @@
 package ex04;
 
-import java.lang.annotation.Target;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -13,7 +12,7 @@ public class TransactionsService {
         return users.retrieveUserById(userId).getBalance();
     }
 
-    public void performTransferTransaction(int recipientId, int senderId, float sum) throws UserNotFoundException {
+    public void performTransferTransaction(int recipientId, int senderId, float sum) throws UserNotFoundException, IllegalTransactionException {
         Transaction transferUser1 = new Transaction(users.retrieveUserById(recipientId), users.retrieveUserById(senderId), sum);
         Transaction transferUser2 = new Transaction(transferUser1);
         users.retrieveUserById(recipientId).setUserTransactions(transferUser1);
@@ -40,7 +39,6 @@ public class TransactionsService {
                     unpairedTransactions.put(userTransaction[j].getIdentifier(), userTransaction[j]);
                 }
             }
-
         }
         return unpairedTransactions.values().toArray(new Transaction[0]);
     }
