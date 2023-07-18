@@ -1,16 +1,25 @@
 package ex03;
 
 
+import ex02.UserIdsGenerator;
+
 public class User {
     public User(String name, float balance) {
+        identifier = UserIdsGenerator.getInstance().generateId();
         this.name = name;
         this.setBalance(balance);
-        identifier = ++countId;
     }
 
     public void setBalance(float balance) {
-        if (balance < 0) System.err.println("Initial balance can't be zero!");
-        else this.balance = balance;
+        if (balance < 0) {
+            System.err.println("Balance can't be less than zero");
+        } else {
+            this.balance = balance;
+        }
+    }
+
+    public void showInfo() {
+        System.out.println(identifier + " " + name + " " + balance);
     }
 
     public int getIdentifier() {
@@ -33,7 +42,6 @@ public class User {
         return userTransactions.transformToArray();
     }
 
-    private static int countId = 0;
     private final int identifier;
     private final String name;
     private float balance;

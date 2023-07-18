@@ -8,25 +8,44 @@ public class Transaction {
         sender = s;
         transferAmount = tA;
         if (transferAmount >= 0) {
-            transferCategory = TransferCategory.DEBIT;
+            transferCategory = Transaction.TransferCategory.DEBIT;
             if (sender.getBalance() > Math.abs(tA)) {
                 recipient.setBalance(recipient.getBalance() + tA);
                 sender.setBalance(sender.getBalance() - tA);
-                transferStatus = TransferStatus.ACCEPTED;
+                transferStatus = Transaction.TransferStatus.ACCEPTED;
             } else {
-                transferStatus = TransferStatus.REFUSED;
+                transferStatus = Transaction.TransferStatus.REFUSED;
             }
         } else {
-            transferCategory = TransferCategory.CREDIT;
+            transferCategory = Transaction.TransferCategory.CREDIT;
             if (sender.getBalance() > Math.abs(tA)) {
                 recipient.setBalance(recipient.getBalance() - tA);
                 sender.setBalance(sender.getBalance() + tA);
-                transferStatus = TransferStatus.ACCEPTED;
+                transferStatus = Transaction.TransferStatus.ACCEPTED;
             } else {
-                transferStatus = TransferStatus.REFUSED;
+                transferStatus = Transaction.TransferStatus.REFUSED;
             }
         }
         identifier = UUID.randomUUID();
+    }
+
+    public Transaction(Transaction other) {
+        identifier = other.identifier;
+        recipient = other.sender;
+        sender = other.recipient;
+        transferAmount = other.transferAmount * (-1);
+        if (other.transferCategory == Transaction.TransferCategory.DEBIT) {
+            transferCategory = Transaction.TransferCategory.CREDIT;
+        } else {
+            transferCategory = Transaction.TransferCategory.DEBIT;
+        }
+        transferStatus = other.transferStatus;
+
+    }
+
+    public void showInfo() {
+        System.out.println(identifier + " " + recipient.getName() + " " + sender.getName()
+                + " " + transferAmount + " " + transferCategory + " " + transferStatus);
     }
 
     public UUID getIdentifier() {
@@ -41,11 +60,11 @@ public class Transaction {
         return sender;
     }
 
-    public TransferCategory getTransferCategory() {
+    public Transaction.TransferCategory getTransferCategory() {
         return transferCategory;
     }
 
-    public TransferStatus getTransferStatus() {
+    public Transaction.TransferStatus getTransferStatus() {
         return transferStatus;
     }
 

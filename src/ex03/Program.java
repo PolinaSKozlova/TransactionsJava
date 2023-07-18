@@ -18,8 +18,11 @@ public class Program {
         listTransactions.addTransaction(tr5);
         Transaction[] arrayTransaction = listTransactions.transformToArray();
         for (var it : arrayTransaction) {
-            System.out.println(it.getIdentifier() + " " + it.getRecipient().getName() + " " + it.getRecipient().getBalance() + " "
-                    + it.getSender().getName() + " " + it.getSender().getBalance() + " " + it.getTransferAmount() + " " + it.getTransferStatus());
+            it.showInfo();
+            System.out.print("recipient ");
+            it.getRecipient().showInfo();
+            System.out.print("sender ");
+            it.getSender().showInfo();
         }
         try {
             listTransactions.removeTransaction(tr4.getIdentifier());
@@ -29,9 +32,13 @@ public class Program {
         System.out.println();
         arrayTransaction = listTransactions.transformToArray();
         for (var it : arrayTransaction) {
-            System.out.println(it.getIdentifier() + " " + it.getRecipient().getName() + " " + it.getRecipient().getBalance() + " "
-                    + it.getSender().getName() + " " + it.getSender().getBalance() + " " + it.getTransferAmount() + " " + it.getTransferStatus());
+            it.showInfo();
+            System.out.print("recipient ");
+            it.getRecipient().showInfo();
+            System.out.print("sender ");
+            it.getSender().showInfo();
         }
+        System.out.println();
         try {
             listTransactions.removeTransaction(tr4.getIdentifier());
         } catch (TransactionNotFoundException e) {
