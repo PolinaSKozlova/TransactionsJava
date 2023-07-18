@@ -10,7 +10,9 @@ public class UsersArrayList implements UsersList {
 
     @Override
     public void addUser(User newUser) {
-        if (position == size) resizeArrayList();
+        if (position == size) {
+            resizeArrayList();
+        }
         arrayList[position++] = newUser;
     }
 

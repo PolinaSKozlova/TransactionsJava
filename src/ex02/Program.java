@@ -55,6 +55,7 @@ public class Program {
         } catch (UserNotFoundException e) {
             System.out.println(e.toString());
         }
+        System.out.println();
         try {
             myUsersArray.retrieveUserById(19);
         } catch (UserNotFoundException e) {
