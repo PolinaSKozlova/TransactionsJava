@@ -43,9 +43,9 @@ public class TransactionsService {
         return unpairedTransactions.values().toArray(new Transaction[0]);
     }
 
-    public User[] getUsersList() {
-        return users.getArrayList();
-    }
+//    public User[] getUsersList() {
+//        return users.getArrayList();
+//    }
 
     private UsersList users = new UsersArrayList();
 }
