@@ -3,7 +3,8 @@ package ex02;
 public class Program {
     public static void main(String[] args) {
         UsersList myUsersArray = new UsersArrayList();
-        System.out.println("number of users " + myUsersArray.retrieveNumberOfUsers());
+        System.out.println("number of users "
+                + myUsersArray.retrieveNumberOfUsers());
         System.out.println("array size " + myUsersArray.getSize());
         User userBob = new User("Bob", 320);
         User userAnton = new User("Anton", 1000.5f);
@@ -20,12 +21,15 @@ public class Program {
         myUsersArray.addUser(userSasha);
         myUsersArray.addUser(userIvan);
         System.out.println();
-        System.out.println("number of users " + myUsersArray.retrieveNumberOfUsers());
+        System.out.println("number of users "
+                + myUsersArray.retrieveNumberOfUsers());
         System.out.println("array size " + myUsersArray.getSize());
         try {
             for (int i = 0; i < myUsersArray.retrieveNumberOfUsers(); ++i) {
-                System.out.println(myUsersArray.retrieveUserByIndex(i).getIdentifier() + " "
-                        + myUsersArray.retrieveUserByIndex(i).getName() + " " + myUsersArray.retrieveUserByIndex(i).getBalance());
+                System.out.println(myUsersArray.retrieveUserByIndex(i).
+                        getIdentifier() + " "
+                        + myUsersArray.retrieveUserByIndex(i).getName() + " "
+                        + myUsersArray.retrieveUserByIndex(i).getBalance());
             }
         } catch (UserNotFoundException e) {
             System.out.println(e.toString());
@@ -35,23 +39,30 @@ public class Program {
         User userKris = new User("Kris", 879.54f);
         User userMarat = new User("Marat", 631);
         User userSanya = new User("Sanya", 76);
+        User userGena = new User("Gena", -100);
         myUsersArray.addUser(userPolina);
         myUsersArray.addUser(userKris);
         myUsersArray.addUser(userMarat);
         myUsersArray.addUser(userSanya);
-        System.out.println("number of users " + myUsersArray.retrieveNumberOfUsers());
+        myUsersArray.addUser(userGena);
+        System.out.println("number of users "
+                + myUsersArray.retrieveNumberOfUsers());
         System.out.println("array size " + myUsersArray.getSize());
         try {
             for (int i = 0; i < myUsersArray.retrieveNumberOfUsers(); ++i) {
-                System.out.println(myUsersArray.retrieveUserByIndex(i).getIdentifier() + " "
-                        + myUsersArray.retrieveUserByIndex(i).getName() + " " + myUsersArray.retrieveUserByIndex(i).getBalance());
+                System.out.println(myUsersArray.retrieveUserByIndex(i).
+                        getIdentifier() + " "
+                        + myUsersArray.retrieveUserByIndex(i).getName() + " "
+                        + myUsersArray.retrieveUserByIndex(i).getBalance());
             }
         } catch (UserNotFoundException e) {
             System.out.println(e.toString());
         }
         try {
-            System.out.println(myUsersArray.retrieveUserById(7).getIdentifier() + " "
-                    + myUsersArray.retrieveUserById(7).getName() + " " + myUsersArray.retrieveUserById(7).getBalance());
+            System.out.println(myUsersArray.retrieveUserById(7).
+                    getIdentifier() + " "
+                    + myUsersArray.retrieveUserById(7).getName() + " "
+                    + myUsersArray.retrieveUserById(7).getBalance());
         } catch (UserNotFoundException e) {
             System.out.println(e.toString());
         }
@@ -66,6 +77,5 @@ public class Program {
         } catch (UserNotFoundException e) {
             System.out.println(e.toString());
         }
-
     }
 }

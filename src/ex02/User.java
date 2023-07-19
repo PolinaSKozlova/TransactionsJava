@@ -9,7 +9,8 @@ public class User {
 
     public void setBalance(float balance) {
         if (balance < 0) {
-            System.err.println("Balance can't be less than zero");
+            System.err.println("User " + name +
+                    " balance can't be less than zero");
         } else {
             this.balance = balance;
         }

@@ -10,6 +10,7 @@ public class User {
     public void setBalance(float balance) {
         if (balance < 0) {
             System.err.println("Initial balance can't be zero!");
+            System.exit(1);
         } else {
             this.balance = balance;
         }

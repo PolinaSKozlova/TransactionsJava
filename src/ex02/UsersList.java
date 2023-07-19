@@ -5,7 +5,8 @@ public interface UsersList {
 
     public User retrieveUserById(int userId) throws UserNotFoundException;
 
-    public User retrieveUserByIndex(int arrayIndex) throws UserNotFoundException;
+    public User retrieveUserByIndex(int arrayIndex)
+            throws UserNotFoundException;
 
     public int retrieveNumberOfUsers();
 
