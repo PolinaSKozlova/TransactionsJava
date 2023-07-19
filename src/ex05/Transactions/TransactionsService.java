@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class TransactionsService {
+    private UsersList users = new UsersArrayList();
+
     public void addUser(User newUser) {
         users.addUser(newUser);
     }
@@ -59,6 +61,4 @@ public class TransactionsService {
         }
         return unpairedTransactions.values().toArray(new Transaction[0]);
     }
-
-    private UsersList users = new UsersArrayList();
 }

@@ -1,6 +1,12 @@
 package ex01;
 
 public class UserIdsGenerator {
+    private static UserIdsGenerator uniqueInstance;
+    private static int identifier = 0;
+    
+    private UserIdsGenerator() {
+    }
+
     public int generateId() {
         return ++identifier;
     }
@@ -11,10 +17,4 @@ public class UserIdsGenerator {
         }
         return uniqueInstance;
     }
-
-    private UserIdsGenerator() {
-    }
-
-    private static UserIdsGenerator uniqueInstance;
-    private static int identifier = 0;
 }

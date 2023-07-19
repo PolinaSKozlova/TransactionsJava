@@ -1,6 +1,11 @@
 package ex00;
 
 public class User {
+    private static int countId = 0;
+    private final int identifier;
+    private final String name;
+    private float balance;
+
     public User(String name, float balance) {
         this.name = name;
         this.setBalance(balance);
@@ -30,9 +35,4 @@ public class User {
     public void showInfo() {
         System.out.println(identifier + " " + name + " " + balance);
     }
-
-    private static int countId = 0;
-    private final int identifier;
-    private final String name;
-    private float balance;
 }

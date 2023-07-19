@@ -1,6 +1,11 @@
 package ex01;
 
 public class User {
+
+    private final int identifier;
+    private final String name;
+    private float balance;
+
     public User(String name, float balance) {
         this.name = name;
         this.setBalance(balance);
@@ -32,7 +37,4 @@ public class User {
         System.out.println(identifier + " " + name + " " + balance);
     }
 
-    private final int identifier;
-    private final String name;
-    private float balance;
 }

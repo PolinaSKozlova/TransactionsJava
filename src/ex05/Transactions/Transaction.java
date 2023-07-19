@@ -5,6 +5,16 @@ import ex05.Users.User;
 import java.util.UUID;
 
 public class Transaction {
+    public enum TransferCategory {
+        DEBIT, CREDIT
+    }
+
+    private final UUID identifier;
+    private User recipient;
+    private User sender;
+    private TransferCategory transferCategory; //(debits, credits)
+    private float transferAmount;
+
     public Transaction(User r, User s, float tA)
             throws IllegalTransactionException {
         recipient = r;
@@ -69,14 +79,4 @@ public class Transaction {
     public float getTransferAmount() {
         return transferAmount;
     }
-
-    public enum TransferCategory {
-        DEBIT, CREDIT
-    }
-
-    private final UUID identifier;
-    private User recipient;
-    private User sender;
-    private TransferCategory transferCategory; //(debits, credits)
-    private float transferAmount;
 }
