@@ -71,11 +71,16 @@ public class Menu {
         Scanner line = new Scanner(System.in);
         System.out.println("Enter a user name and a balance");
         String[] userInfo = line.nextLine().split(" ");
+        if (userInfo.length != 2) {
+            System.out.println("Wrong number of arguments");
+            return;
+        }
         User newUser = new User(userInfo[0],
                 Float.parseFloat(userInfo[1]));
         transactionsService.addUser(newUser);
         System.out.println("User with id = " + newUser.getIdentifier()
                 + " is added");
+
     }
 
     private void viewUserBalanceMenu() {
@@ -97,6 +102,10 @@ public class Menu {
                 "and a transfer amount");
         Scanner line = new Scanner(System.in);
         String[] transactionInfo = line.nextLine().split(" ");
+        if (transactionInfo.length != 3) {
+            System.out.println("Wrong number of arguments");
+            return;
+        }
         try {
             transactionsService.performTransferTransaction(
                     Integer.parseInt(transactionInfo[0]),
