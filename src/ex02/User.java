@@ -1,6 +1,10 @@
 package ex02;
 
 public class User {
+    private final int identifier;
+    private final String name;
+    private float balance;
+
     public User(String name, float balance) {
         identifier = UserIdsGenerator.getInstance().generateId();
         this.name = name;
@@ -27,8 +31,4 @@ public class User {
     public float getBalance() {
         return balance;
     }
-
-    private final int identifier;
-    private final String name;
-    private float balance;
 }
