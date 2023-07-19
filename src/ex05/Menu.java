@@ -40,7 +40,7 @@ public class Menu {
     }
 
     private void makeMenuNumber(int value) {
-
+//        Scanner line = new Scanner(System.in);
         switch (value) {
             case 1:
                 addUserMenu();
@@ -52,7 +52,7 @@ public class Menu {
                 performTransferMenu();
                 break;
             case 4:
-                System.out.println("View all transactions for a specific user");
+                viewAllUsersTransactions();
                 break;
             case 5:
                 System.out.println("DEV – remove a transfer by ID");
@@ -65,6 +65,7 @@ public class Menu {
             default:
                 System.out.println("Wrong menu number");
         }
+
     }
 
     private void addUserMenu() {
@@ -115,6 +116,22 @@ public class Menu {
             System.out.println(e.getMessage());
         }
         System.out.println("The transfer is completed");
+    }
+
+    private void viewAllUsersTransactions() {
+        System.out.println("Enter a user ID");
+        Scanner line = new Scanner(System.in);
+        int userId = Integer.parseInt(line.nextLine());
+        try {
+            for (var us : transactionsService.retrieveUserTransfers(userId)) {
+                System.out.println("To " + us.getSender().getName() +
+                        "(id = " + us.getSender().getIdentifier() + ") " +
+                        us.getTransferAmount() + " with id = "
+                        + us.getIdentifier());
+            }
+        } catch (UserNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void showDevMenu() {
