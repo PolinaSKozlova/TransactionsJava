@@ -1,6 +1,7 @@
 package ex05;
 
 import ex05.Transactions.IllegalTransactionException;
+import ex05.Transactions.TransactionNotFoundException;
 import ex05.Transactions.TransactionsService;
 import ex05.Users.User;
 import ex05.Users.UserNotFoundException;
@@ -15,6 +16,7 @@ public class Menu {
 
     public void showMenu(String mode) {
         int menuNumber = 0;
+        menuMode = mode;
         Scanner s = new Scanner(System.in);
         if (mode.equals("dev")) {
             while (menuNumber != 7) {
@@ -32,15 +34,12 @@ public class Menu {
                 makeMenuNumber(menuNumber);
                 System.out.println("---------------------------------------" +
                         "------------------");
-
             }
-
         }
         s.close();
     }
 
     private void makeMenuNumber(int value) {
-//        Scanner line = new Scanner(System.in);
         switch (value) {
             case 1:
                 addUserMenu();
@@ -55,10 +54,14 @@ public class Menu {
                 viewAllUsersTransactions();
                 break;
             case 5:
-                System.out.println("DEV – remove a transfer by ID");
+                if (menuMode.equals("dev")) {
+                    removeTransferById();
+                }
                 break;
             case 6:
-                System.out.println("DEV – check transfer validity");
+                if (menuMode.equals("dev")) {
+                    checkValidityTransactions();
+                }
                 break;
             case 7:
                 break;
@@ -134,6 +137,35 @@ public class Menu {
         }
     }
 
+    private void removeTransferById() {
+        System.out.println("Enter a user ID and a transfer ID");
+        Scanner line = new Scanner(System.in);
+        String[] transactionInfo = line.nextLine().split(" ");
+        if (transactionInfo.length != 2) {
+            System.out.println("Wrong number of arguments");
+            return;
+        }
+        try {
+            transactionsService.removeTransaction(UUID.fromString(transactionInfo[1]),
+                    Integer.parseInt(transactionInfo[0]));
+        } catch (UserNotFoundException |
+                 TransactionNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void checkValidityTransactions() {
+        System.out.println("Check results:");
+        for (var tr : transactionsService.checkValidity()) {
+            System.out.println(tr.getRecipient().getName() + "(id = " +
+                    tr.getRecipient().getIdentifier() +
+                    ") has an unacknowledged transfer id =" + tr.getIdentifier()
+                    + " from " + tr.getSender().getName() + "(id = " +
+                    tr.getSender().getIdentifier() + ") for "
+                    + tr.getTransferAmount());
+        }
+    }
+
     private void showDevMenu() {
         System.out.println("1. Add a user");
         System.out.println("2. View user balances");
@@ -153,4 +185,5 @@ public class Menu {
     }
 
     private TransactionsService transactionsService;
+    private String menuMode;
 }

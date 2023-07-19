@@ -29,7 +29,6 @@ public class Transaction {
                         "balance is not enough for transaction");
             }
         }
-
         identifier = UUID.randomUUID();
     }
 
