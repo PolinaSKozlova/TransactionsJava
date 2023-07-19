@@ -35,10 +35,14 @@ public class Program {
         tS.addUser(userAnn);
         tS.addUser(userKen);
         try {
-            tS.performTransferTransaction(userBob.getIdentifier(), userAnn.getIdentifier(), 50);
-            tS.performTransferTransaction(userKen.getIdentifier(), userAnn.getIdentifier(), 100);
-            tS.performTransferTransaction(userAnn.getIdentifier(), userKen.getIdentifier(), -50);
-            tS.performTransferTransaction(userKen.getIdentifier(), userBob.getIdentifier(), -500);
+            tS.performTransferTransaction(userBob.getIdentifier(),
+                    userAnn.getIdentifier(), 50);
+            tS.performTransferTransaction(userKen.getIdentifier(),
+                    userAnn.getIdentifier(), 100);
+            tS.performTransferTransaction(userAnn.getIdentifier(),
+                    userKen.getIdentifier(), -50);
+            tS.performTransferTransaction(userKen.getIdentifier(),
+                    userBob.getIdentifier(), -500);
         } catch (UserNotFoundException | IllegalTransactionException e) {
             System.out.println(e.toString());
         }
@@ -60,7 +64,8 @@ public class Program {
             System.out.println(e.toString());
         }
         System.out.println("Ken transactions");
-        UUID refusedId = userKen.getUserTransactions().transformToArray()[0].getIdentifier();
+        UUID refusedId = userKen.getUserTransactions().
+                transformToArray()[0].getIdentifier();
         try {
             for (var it : tS.retrieveUserTransfers(userKen.getIdentifier())) {
                 it.showInfo();

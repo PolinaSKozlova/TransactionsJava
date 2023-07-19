@@ -3,6 +3,10 @@ package ex04;
 import java.util.Arrays;
 
 public class UsersArrayList implements UsersList {
+    private User arrayList[];
+    private int position = 0;
+    private int size = 10;
+
     public UsersArrayList() {
         arrayList = new User[size];
     }
@@ -53,9 +57,4 @@ public class UsersArrayList implements UsersList {
         size *= 2;
         arrayList = Arrays.copyOf(arrayList, size);
     }
-
-    private User arrayList[];
-    private int position = 0;
-    private int size = 10;
-
 }
