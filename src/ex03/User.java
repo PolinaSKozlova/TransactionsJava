@@ -1,6 +1,11 @@
 package ex03;
 
 public class User {
+    private final int identifier;
+    private final String name;
+    private float balance;
+    private TransactionsList userTransactions = new TransactionsLinkedList();
+
     public User(String name, float balance) {
         identifier = UserIdsGenerator.getInstance().generateId();
         this.name = name;
@@ -38,10 +43,5 @@ public class User {
     public Transaction[] getUsersTransaction() {
         return userTransactions.transformToArray();
     }
-
-    private final int identifier;
-    private final String name;
-    private float balance;
-    private TransactionsList userTransactions = new TransactionsLinkedList();
 }
 

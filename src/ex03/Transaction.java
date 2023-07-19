@@ -3,6 +3,21 @@ package ex03;
 import java.util.UUID;
 
 public class Transaction {
+    private enum TransferCategory {
+        DEBIT, CREDIT
+    }
+
+    private enum TransferStatus {
+        REFUSED, ACCEPTED
+    }
+
+    private final UUID identifier;
+    private User recipient;
+    private User sender;
+    private TransferCategory transferCategory; //(debits, credits)
+    private TransferStatus transferStatus; // (refused, accepted)
+    private float transferAmount;
+
     public Transaction(User r, User s, float tA) {
         recipient = r;
         sender = s;
@@ -72,19 +87,4 @@ public class Transaction {
     public float getTransferAmount() {
         return transferAmount;
     }
-
-    private enum TransferCategory {
-        DEBIT, CREDIT
-    }
-
-    private enum TransferStatus {
-        REFUSED, ACCEPTED
-    }
-
-    private final UUID identifier;
-    private User recipient;
-    private User sender;
-    private TransferCategory transferCategory; //(debits, credits)
-    private TransferStatus transferStatus; // (refused, accepted)
-    private float transferAmount;
 }
