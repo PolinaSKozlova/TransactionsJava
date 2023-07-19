@@ -1,6 +1,7 @@
 package ex05;
 
 import ex05.Transactions.IllegalTransactionException;
+import ex05.Transactions.Transaction;
 import ex05.Transactions.TransactionNotFoundException;
 import ex05.Transactions.TransactionsService;
 import ex05.Users.User;
@@ -146,9 +147,15 @@ public class Menu {
             return;
         }
         try {
+            Transaction tr = transactionsService.retrieveUserById(
+                            Integer.parseInt(transactionInfo[0])).
+                    getUserTransaction(UUID.fromString(transactionInfo[1]));
             transactionsService.removeTransaction(
                     UUID.fromString(transactionInfo[1]),
                     Integer.parseInt(transactionInfo[0]));
+            System.out.println("Transfer To " + tr.getSender().getName()
+                    + "(id = " + tr.getSender().getIdentifier() + ") " +
+                    +tr.getTransferAmount() + " removed");
         } catch (UserNotFoundException |
                  TransactionNotFoundException e) {
             System.out.println(e.getMessage());
@@ -160,9 +167,9 @@ public class Menu {
         for (var tr : transactionsService.checkValidity()) {
             System.out.println(tr.getRecipient().getName() + "(id = " +
                     tr.getRecipient().getIdentifier() +
-                    ") has an unacknowledged transfer id =" + tr.getIdentifier()
-                    + " from " + tr.getSender().getName() + "(id = " +
-                    tr.getSender().getIdentifier() + ") for "
+                    ") has an unacknowledged transfer id = " +
+                    tr.getIdentifier() + " from " + tr.getSender().getName()
+                    + "(id = " + tr.getSender().getIdentifier() + ") for "
                     + tr.getTransferAmount());
         }
     }
