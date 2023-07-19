@@ -1,4 +1,4 @@
-package ex05;
+package ex05.Transactions;
 
 import java.util.UUID;
 

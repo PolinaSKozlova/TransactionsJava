@@ -1,4 +1,4 @@
-package ex05;
+package ex05.Users;
 
 import java.util.Arrays;
 

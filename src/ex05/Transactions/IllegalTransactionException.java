@@ -1,4 +1,4 @@
-package ex05;
+package ex05.Transactions;
 
 public class IllegalTransactionException extends Exception {
     public IllegalTransactionException() {

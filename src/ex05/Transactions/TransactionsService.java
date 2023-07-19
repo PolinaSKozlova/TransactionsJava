@@ -1,4 +1,9 @@
-package ex05;
+package ex05.Transactions;
+
+import ex05.Users.User;
+import ex05.Users.UserNotFoundException;
+import ex05.Users.UsersArrayList;
+import ex05.Users.UsersList;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -6,6 +11,10 @@ import java.util.UUID;
 public class TransactionsService {
     public void addUser(User newUser) {
         users.addUser(newUser);
+    }
+
+    public User retrieveUserById(int userId) throws UserNotFoundException {
+        return users.retrieveUserById(userId);
     }
 
     public void performTransferTransaction(int recipientId,

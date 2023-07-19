@@ -1,4 +1,4 @@
-package ex05;
+package ex05.Users;
 
 public interface UsersList {
     public void addUser(User newUser);

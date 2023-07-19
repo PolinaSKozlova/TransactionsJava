@@ -1,4 +1,8 @@
-package ex05;
+package ex05.Users;
+
+import ex05.Transactions.Transaction;
+import ex05.Transactions.TransactionsLinkedList;
+import ex05.Transactions.TransactionsList;
 
 public class User {
     public User(String name, float balance) throws IllegalArgumentException {

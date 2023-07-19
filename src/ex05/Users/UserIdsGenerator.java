@@ -1,4 +1,4 @@
-package ex05;
+package ex05.Users;
 
 public class UserIdsGenerator {
     public int generateId() {
