@@ -11,15 +11,18 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class Menu {
-    public Menu(TransactionsService service) {
+    private TransactionsService transactionsService;
+    private String menuMode;
+
+    public Menu(TransactionsService service, String mode) {
         transactionsService = service;
+        menuMode = mode;
     }
 
-    public void showMenu(String mode) {
+    public void showMenu() {
         int menuNumber = 0;
-        menuMode = mode;
         Scanner s = new Scanner(System.in);
-        if (mode.equals("dev")) {
+        if (menuMode.equals("dev")) {
             while (menuNumber != 7) {
                 showDevMenu();
                 menuNumber = s.nextInt();
@@ -28,7 +31,7 @@ public class Menu {
                         "------------------");
             }
         }
-        if (mode.equals("prod")) {
+        if (menuMode.equals("prod")) {
             while (menuNumber != 5) {
                 showProdMenu();
                 menuNumber = s.nextInt();
@@ -191,7 +194,4 @@ public class Menu {
         System.out.println("4. View all transactions for a specific user");
         System.out.println("5. Finish execution");
     }
-
-    private TransactionsService transactionsService;
-    private String menuMode;
 }

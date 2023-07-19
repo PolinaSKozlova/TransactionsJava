@@ -13,8 +13,8 @@ public class Program {
     public static void main(String[] args) {
         checkArgs(args);
         TransactionsService service = new TransactionsService();
-        Menu menu = new Menu(service);
-        menu.showMenu(args[0].substring("--profile=".length()));
+        Menu menu = new Menu(service, args[0].substring("--profile=".length()));
+        menu.showMenu();
     }
 
     private static void checkArgs(String[] args) {
