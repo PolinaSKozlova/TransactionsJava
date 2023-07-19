@@ -3,7 +3,7 @@ package ex04;
 import java.util.UUID;
 
 public class Transaction {
-    public Transaction(User r, User s, float tA) {
+    public Transaction(User r, User s, float tA) throws IllegalTransactionException {
         recipient = r;
         sender = s;
         transferAmount = tA;
@@ -12,18 +12,20 @@ public class Transaction {
             if (sender.getBalance() > Math.abs(tA)) {
                 recipient.setBalance(recipient.getBalance() + tA);
                 sender.setBalance(sender.getBalance() - tA);
-                transferStatus = TransferStatus.ACCEPTED;
+//                transferStatus = TransferStatus.ACCEPTED;
             } else {
-                transferStatus = TransferStatus.REFUSED;
+//                transferStatus = TransferStatus.REFUSED;
+                throw new IllegalTransactionException("Sum on the sender balance is not enough for transaction");
             }
         } else {
             transferCategory = TransferCategory.CREDIT;
             if (sender.getBalance() > Math.abs(tA)) {
                 recipient.setBalance(recipient.getBalance() - tA);
                 sender.setBalance(sender.getBalance() + tA);
-                transferStatus = TransferStatus.ACCEPTED;
+//                transferStatus = TransferStatus.ACCEPTED;
             } else {
-                transferStatus = TransferStatus.REFUSED;
+//                transferStatus = TransferStatus.REFUSED;
+                throw new IllegalTransactionException("Sum on the sender balance is not enough for transaction");
             }
         }
         identifier = UUID.randomUUID();
@@ -39,13 +41,13 @@ public class Transaction {
         } else {
             transferCategory = TransferCategory.DEBIT;
         }
-        transferStatus = other.transferStatus;
+//        transferStatus = other.transferStatus;
 
     }
 
     public void showInfo() {
         System.out.println(identifier + " " + recipient.getName() + " " + sender.getName()
-                + " " + transferAmount + " " + transferCategory + " " + transferStatus);
+                + " " + transferAmount + " " + transferCategory);//+ " " + transferStatus);
     }
 
     public UUID getIdentifier() {
@@ -64,9 +66,9 @@ public class Transaction {
         return transferCategory;
     }
 
-    public TransferStatus getTransferStatus() {
-        return transferStatus;
-    }
+//    public TransferStatus getTransferStatus() {
+//        return transferStatus;
+//    }
 
     public float getTransferAmount() {
         return transferAmount;
@@ -76,14 +78,14 @@ public class Transaction {
         DEBIT, CREDIT
     }
 
-    public enum TransferStatus {
-        REFUSED, ACCEPTED
-    }
+//    public enum TransferStatus {
+//        REFUSED, ACCEPTED
+//    }
 
     private final UUID identifier;
     private User recipient;
     private User sender;
     private TransferCategory transferCategory; //(debits, credits)
-    private TransferStatus transferStatus; // (refused, accepted)
+    //    private TransferStatus transferStatus; // (refused, accepted)
     private float transferAmount;
 }

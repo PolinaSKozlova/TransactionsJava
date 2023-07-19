@@ -1,15 +1,15 @@
 package ex04;
 
 public class User {
-    public User(String name, float balance) {
+    public User(String name, float balance) throws IllegalArgumentException {
         identifier = UserIdsGenerator.getInstance().generateId();
         this.name = name;
         this.setBalance(balance);
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(float balance) throws IllegalArgumentException {
         if (balance < 0) {
-            System.err.println("Balance can't be less than zero");
+            throw new IllegalArgumentException();
         } else {
             this.balance = balance;
         }
@@ -20,7 +20,7 @@ public class User {
         for (var it : userTransactions.transformToArray()) {
             System.out.println(it.getIdentifier() + " " + it.getRecipient().getName() + " "
                     + it.getSender().getName() + " " + it.getTransferAmount() + " "
-                    + it.getTransferCategory() + " " + it.getTransferStatus());
+                    + it.getTransferCategory());// + " " + it.getTransferStatus());
         }
     }
 
@@ -39,10 +39,6 @@ public class User {
     public void setUserTransactions(Transaction other) {
         userTransactions.addTransaction(other);
     }
-
-//    public Transaction[] getUsersTransaction() {
-//        return userTransactions.transformToArray();
-//    }
 
     public TransactionsList getUserTransactions() {
         return userTransactions;
