@@ -21,28 +21,29 @@ public class TransactionsLinkedList implements TransactionsList {
     @Override
     public void removeTransaction(UUID transactionId)
             throws TransactionNotFoundException {
-        if (head.transaction.getIdentifier() == transactionId) {
+        if (head.transaction.getIdentifier().equals(transactionId)) {
             head = head.next;
             head.prev = null;
             --size;
             return;
         }
-        if (tail.transaction.getIdentifier() == transactionId) {
+        if (tail.transaction.getIdentifier().equals(transactionId)) {
             tail = tail.prev;
             tail.next = null;
             --size;
             return;
         }
         Node current = head;
-        for (; current != null; current = current.next) {
-            if (current.transaction.getIdentifier() == transactionId) {
+        while (current != null) {
+            if (current.transaction.getIdentifier().equals(transactionId)) {
                 break;
             }
+            current = current.next;
         }
-        if (current == null)
+        if (current == null) {
             throw new TransactionNotFoundException("Transaction with id "
                     + transactionId + " not found");
-        else {
+        } else {
             current.prev.next = current.next;
             current.next.prev = current.prev;
             --size;
@@ -72,11 +73,11 @@ public class TransactionsLinkedList implements TransactionsList {
         }
 
         Transaction transaction;
-        Node next = null;
-        Node prev = null;
+        Node next;
+        Node prev;
     }
 
-    private Node head = null;
-    private Node tail = null;
+    private Node head;
+    private Node tail;
     private int size = 0;
 }

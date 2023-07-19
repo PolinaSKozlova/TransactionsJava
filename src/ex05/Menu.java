@@ -115,10 +115,10 @@ public class Menu {
                     Integer.parseInt(transactionInfo[0]),
                     Integer.parseInt(transactionInfo[1]),
                     Float.parseFloat(transactionInfo[2]));
+            System.out.println("The transfer is completed");
         } catch (UserNotFoundException | IllegalTransactionException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("The transfer is completed");
     }
 
     private void viewAllUsersTransactions() {
@@ -146,7 +146,8 @@ public class Menu {
             return;
         }
         try {
-            transactionsService.removeTransaction(UUID.fromString(transactionInfo[1]),
+            transactionsService.removeTransaction(
+                    UUID.fromString(transactionInfo[1]),
                     Integer.parseInt(transactionInfo[0]));
         } catch (UserNotFoundException |
                  TransactionNotFoundException e) {
