@@ -19,13 +19,15 @@ public class TransactionsLinkedList implements TransactionsList {
     }
 
     @Override
-    public void removeTransaction(UUID transactionId) throws TransactionNotFoundException {
+    public void removeTransaction(UUID transactionId)
+            throws TransactionNotFoundException {
         Node current = head;
         for (; current != null; current = current.next) {
             if (current.transaction.getIdentifier() == transactionId) break;
         }
         if (current == null)
-            throw new TransactionNotFoundException("Transaction with id " + transactionId + " not found");
+            throw new TransactionNotFoundException("Transaction with id "
+                    + transactionId + " not found");
         else {
             current.prev.next = current.next;
             current.next.prev = current.prev;

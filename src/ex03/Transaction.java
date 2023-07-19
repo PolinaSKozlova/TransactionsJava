@@ -44,8 +44,9 @@ public class Transaction {
     }
 
     public void showInfo() {
-        System.out.println(identifier + " " + recipient.getName() + " " + sender.getName()
-                + " " + transferAmount + " " + transferCategory + " " + transferStatus);
+        System.out.println(identifier + " " + recipient.getName() + " "
+                + sender.getName() + " " + transferAmount + " "
+                + transferCategory + " " + transferStatus);
     }
 
     public UUID getIdentifier() {
