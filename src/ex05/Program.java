@@ -12,7 +12,9 @@ import java.util.UUID;
 public class Program {
     public static void main(String[] args) {
         checkArgs(args);
-        Menu.showMenu(args[0].substring("--profile=".length()));
+        TransactionsService service = new TransactionsService();
+        Menu menu = new Menu(service);
+        menu.showMenu(args[0].substring("--profile=".length()));
     }
 
     private static void checkArgs(String[] args) {

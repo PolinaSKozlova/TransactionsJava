@@ -9,7 +9,11 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class Menu {
-    public static void showMenu(String mode) {
+    public Menu(TransactionsService service) {
+        transactionsService = service;
+    }
+
+    public void showMenu(String mode) {
         int menuNumber = 0;
         Scanner s = new Scanner(System.in);
         if (mode.equals("dev")) {
@@ -35,7 +39,7 @@ public class Menu {
         s.close();
     }
 
-    private static void makeMenuNumber(int value) {
+    private void makeMenuNumber(int value) {
 
         switch (value) {
             case 1:
@@ -63,7 +67,7 @@ public class Menu {
         }
     }
 
-    private static void addUserMenu() {
+    private void addUserMenu() {
         Scanner line = new Scanner(System.in);
         System.out.println("Enter a user name and a balance");
         String[] userInfo = line.nextLine().split(" ");
@@ -74,7 +78,7 @@ public class Menu {
                 + " is added");
     }
 
-    private static void viewUserBalanceMenu() {
+    private void viewUserBalanceMenu() {
         Scanner line = new Scanner(System.in);
         System.out.println("Enter a user ID");
         String id = line.nextLine();
@@ -88,7 +92,7 @@ public class Menu {
         }
     }
 
-    private static void performTransferMenu() {
+    private void performTransferMenu() {
         System.out.println("Enter a sender ID, a recipient ID, " +
                 "and a transfer amount");
         Scanner line = new Scanner(System.in);
@@ -104,7 +108,7 @@ public class Menu {
         System.out.println("The transfer is completed");
     }
 
-    private static void showDevMenu() {
+    private void showDevMenu() {
         System.out.println("1. Add a user");
         System.out.println("2. View user balances");
         System.out.println("3. Perform a transfer");
@@ -114,7 +118,7 @@ public class Menu {
         System.out.println("7. Finish execution");
     }
 
-    private static void showProdMenu() {
+    private void showProdMenu() {
         System.out.println("1. Add a user");
         System.out.println("2. View user balances");
         System.out.println("3. Perform a transfer");
@@ -122,6 +126,5 @@ public class Menu {
         System.out.println("5. Finish execution");
     }
 
-    private static TransactionsService transactionsService
-            = new TransactionsService();
+    private TransactionsService transactionsService;
 }
