@@ -1,7 +1,7 @@
-package ex05.Users;
+package Users;
 
 public class UserNotFoundException extends Exception {
-    public UserNotFoundException(String message) {
-        super(message);
-    }
+  public UserNotFoundException(String message) {
+    super(message);
+  }
 }
